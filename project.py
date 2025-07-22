@@ -5,26 +5,26 @@ def select_roi(frame):
     cv2.destroyWindow("Select Object to Track")
     return bonding_box
 
-cap = cv2.VideoCapture(0)
-if not cap.isOpened():
+camera = cv2.Videocamerature(0)
+if camera.isOpened() == False:
     print("Error: Cannot access webcam.")
     while(1):
         pass
 
-suc, frame = cap.read()
-if not suc:
+suc, frame = camera.read()
+if suc == False:
     print("Error: Failed to read from webcam.")
-    cap.release()
+    camera.release()
     while(1):
         pass
 
 bonding_box = select_roi(frame)
-tracker = cv2.TrackerKCF_create()
+tracker = cv2.TrackerKCF_create() # Faster than CSRT
 tracker.init(frame, bonding_box)
 
 while True:
-    suc, frame = cap.read()
-    if not suc:
+    suc, frame = camera.read()
+    if suc == False:
         break
 
     success, bonding_box = tracker.update(frame)
@@ -52,6 +52,6 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('x'):
         break
 
-cap.release()
+camera.release()
 cv2.destroyAllWindows()
 
