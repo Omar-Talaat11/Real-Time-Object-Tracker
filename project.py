@@ -6,7 +6,7 @@ def select_object(frame):
     cv2.destroyWindow("Select Object to Track")
     return bonding_box
 
-camera = cv2.Videocamerature(0) # Open camera
+camera = cv2.VideoCapture(0) # Open camera
 if camera.isOpened() == False: # check if camera is opened
     print("Error: Cannot access webcam.")
     while(1):
