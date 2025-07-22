@@ -29,7 +29,8 @@ OpenCV with contrib modules
 pip install opencv-contrib-python
 
 -------------------------------
-Running the Tracker
+Running the Tracker:
+
 python tracker.py
 
 -------------------------------
